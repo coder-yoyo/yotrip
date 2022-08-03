@@ -1,4 +1,4 @@
-# yo-vant-trip
+# yoyo-trip
 
 This template should help get you started developing with Vue 3 in Vite.
 
