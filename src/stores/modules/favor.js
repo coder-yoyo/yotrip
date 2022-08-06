@@ -4,8 +4,8 @@ import { getFavorList, getHistoryList } from '@/services'
 const useFavorStore = defineStore('favor', {
   state: () => ({
     favorlist: [],
-    historylist: null,
-    landlordlist: null
+    historylist: [],
+    landlordlist: []
   }),
 
   actions: {

@@ -60,6 +60,7 @@
       <img src="@/assets/img/detail/icon_ensure.png" alt="" />
       <div class="text">YOYO静旅, 永无止境!</div>
     </div>
+    <detail-action :current-house="currentHouse"></detail-action>
   </div>
 </template>
 
@@ -77,6 +78,7 @@ import DetailComment from './cpns/detail_05-comment.vue'
 import DetailNotice from './cpns/detail_06-notice.vue'
 import DetailMap from './cpns/detail_07-map.vue'
 import DetailIntro from './cpns/detail_08-intro.vue'
+import DetailAction from './cpns/detail_09-action.vue'
 import useScroll from '@/hooks/useScroll'
 
 const route = useRoute()
@@ -91,6 +93,7 @@ const mainPart = computed(() => detailInfos?.value?.mainPart)
 getDetailInfos(houseId).then((res) => {
   detailInfos.value = res.data
 })
+const currentHouse = computed(() => detailInfos.value?.currentHouse)
 
 // 监听返回按钮的点击
 const onClickLeft = () => {
