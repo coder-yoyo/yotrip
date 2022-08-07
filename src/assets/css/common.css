@@ -36,6 +36,12 @@ body {
   background: url(../img/detail/icon_check.png) 0 0 / 100% 100%;
 }
 
+.ellipsis-text-1 {
+  overflow: hidden;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .ellipsis-text-2 {
   overflow: hidden;
