@@ -9,9 +9,9 @@
       </template>
 
       <template #title>
-        <slot name="title">
-          {{ title }}
-        </slot>
+          <slot name="title">
+              {{ title }}
+          </slot>
       </template>
 
       <template #right>
@@ -37,7 +37,7 @@ defineProps({
     default: ''
   },
 })
-const emit = defineEmits('leftClick')
+const emit = defineEmits(["leftClick"])
 const router = useRouter()
 
 const handleLeftClick = () => {

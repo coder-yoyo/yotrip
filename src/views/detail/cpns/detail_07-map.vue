@@ -26,6 +26,9 @@ onMounted(() => {
   const marker = new BMapGL.Marker(point);  
   map.addOverlay(marker)
 })
+
+
+
 </script>
 
 <style lang="less" scoped>
@@ -33,3 +36,5 @@ onMounted(() => {
   height: 250px;
 }
 </style>
+
+

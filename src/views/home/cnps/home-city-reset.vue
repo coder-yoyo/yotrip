@@ -2,7 +2,7 @@
   <div class="city-reset">
     <div class="select location botto_line_color">
       <div class="city" @click="resetCityClick">{{ currentCity.cityName }}</div>
-      <div class="mylocation">
+      <div class="mylocation" @click="positionClick">
         <span class="desc">我的位置</span>
         <img src="@/assets/img/home/Location_icon.png" alt="" />
       </div>
@@ -66,6 +66,7 @@ import useHomeStore from '@/stores/modules/home';
 import { storeToRefs } from 'pinia';
 import { formatMonthDay, getTotalDays } from '@/utils/format_data'
 import useMainStore from '@/stores/modules/main';
+import myBMap from '@/utils/find_mycity'
 
 // 城市选择页面跳转
 const router = useRouter()
@@ -73,22 +74,27 @@ const router = useRouter()
     router.push('/city')
   }
 
-// 定位到当前的位置
-//   const positionClick = () => {
-//   navigator.geolocation.getCurrentPosition(res => {
-//     console.log("获取位置成功:", res)
-//   }, err => {
-//     console.log("获取位置失败:", err)
-//   }, {
-//     enableHighAccuracy: true,
-//     timeout: 5000,
-//     maximumAge: 0
-//   })
-// }
-
 // 拿到cityStore
 const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
+
+// 定位到当前的位置
+  const positionClick = () => {
+    myBMap.init().then(BMap=>{
+      const geolocation = new BMap.Geolocation()
+      geolocation.getCurrentPosition((position)=>{
+        let city = position.address.city;             //获取城市信息
+        let province = position.address.province; 
+        currentCity.value.cityName = city    //获取省份信息
+        // console.log(city)
+        // console.log(province)
+      },(e)=>{
+        console.log(e)
+        console.log('定位失败')
+      }, {provider: 'baidu'})
+    })
+}
+
 
 //日期范围的处理
 const mainStore = useMainStore()
@@ -141,7 +147,6 @@ const startSearch = () => {
       currentCity: currentCity.value.cityName
     }
   })
-  console.log('即刻搜索')
 }
 </script>
 
